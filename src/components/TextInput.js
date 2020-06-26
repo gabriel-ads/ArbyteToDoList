@@ -3,8 +3,8 @@ import { TextInput } from 'react-native';
 
 export default function TextBox(props) {
     return (
-        <TextInput placeholder={props.placeholder} style={{
-            backgroundColor: 'white',
+        <TextInput onChangeText={props.onChangeText} placeholder={props.placeholder} style={{
+            backgroundColor: "#F4F1DE",
             width: 310,
             height: 43,
             textAlign: "center",

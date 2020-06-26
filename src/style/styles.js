@@ -8,6 +8,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize:36,
         fontWeight:"100"
+    },
+    task:{
+        backgroundColor: 'white',
+        width: 310,
+        height: 43,
+        textAlign: "center",
+        marginBottom: 31
     }
 })
 
