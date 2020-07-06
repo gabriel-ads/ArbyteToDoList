@@ -16,7 +16,7 @@ class Main extends React.Component {
               <Text style={{ fontSize: 24, fontWeight: "300" }}>Aqui estão as suas tarefas</Text>
             </View>
             <View style={{ alignItems: "center", marginTop: 43 }}>
-              <TextInput placeholder='O que você tem para fazer?' marginTop={20} />
+              <TextInput placeholder='Nome' marginTop={20} />
             </View>
             <ScrollView>
               <View style={{ flex: 1.2, alignItems: "center", marginTop: 43 }}>
