@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native'
+import { SafeAreaView, Text, View, Alert } from 'react-native'
 import Styles from '../style/styles'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
@@ -22,8 +22,8 @@ class Register extends React.Component {
             <View style={{ marginBottom: 50 }}>
               <Text style={Styles.title}>Cadastro</Text>
             </View>
-            <TextInput placeholder='Nome' marginBottom={20} onChangeText={text => { this.setState({name: this.state.name = text}) }} />
-            <TextInput placeholder='E-mail' marginBottom={0} onChangeText={text => { this.setState({email: this.state.email = text}) }} />
+            <TextInput placeholder='Nome' marginBottom={20} onChangeText={text => { this.setState({name: text}) }} />
+            <TextInput placeholder='E-mail' marginBottom={0} onChangeText={text => { this.setState({email: text}) }} />
             {console.log(this.state.name)}
             {console.log(this.state.email)}
           </View>
@@ -37,7 +37,7 @@ class Register extends React.Component {
                   console.log(res)
                 })
                 .catch(e => {
-                  console.log(e)
+                  Alert.alert('Tente outro e-mail')
                 })
 
 
