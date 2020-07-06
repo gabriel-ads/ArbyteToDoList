@@ -1,18 +1,21 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native'
+import { SafeAreaView, Text, View, Alert } from 'react-native'
 import Styles from '../style/styles'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import axios from 'axios';
-import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Login extends React.Component {
   constructor() {
     super()
     this.state = {
       email: '',
+      token:'',
     }
   }
+
+  
 
   render() {
     return (
@@ -29,17 +32,22 @@ class Login extends React.Component {
               axios.post('https://arbyte-todo-list-api.herokuapp.com/users/login', {
                 email: this.state.email,
               })
+
                 .then(res => {
-                  const name = res.data.user.fullName
-                  const token = res.data.token
-                  
-                  console.log(name, token)
-                  this.props.dispatch({ type: 'TODO_USER', user: { name, token } })
+                  this.setState({token: res.data.token})
+                  return (
+                    AsyncStorage.setItem('userData', JSON.stringify(res.data))
+                  )
                 })
-                .finally(() => { this.props.navigation.navigate('Main') })
+
+                .then(() => {
+                  this.props.navigation.navigate('Main')
+                })
+
                 .catch(e => {
-                  console.log(e)
+                  Alert.alert('Email não existe ou está incorreto')
                 })
+
             }} />
             <Button backgroundColor='#F2CC8F' text='Cadastrar' marginTop={20} onPress={() => this.props.navigation.navigate('Register')} />
           </View>
@@ -49,8 +57,4 @@ class Login extends React.Component {
   }
 }
 
-const mapStoreToProps = ({ user }) => {
-  return { user }
-}
-
-export default connect(mapStoreToProps)(Login)
+export default Login
